@@ -332,6 +332,35 @@ html {
 body{
 	background-color: #000000f0 !important;
 }
+/* Loader Styles */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #007bff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 		/* project image zoom effect */
 
 		.zoom-effect {
@@ -512,7 +541,10 @@ d2l-empty-state-simple {
 }</style><style type="text/css">.scrollax-performance, .scrollax-performance *, .scrollax-performance *:before, .scrollax-performance *:after { pointer-events: none !important; -webkit-animation-play-state: paused !important; animation-play-state: paused !important; };</style><style class="darkreader darkreader--sync" media="screen"></style></head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" data-aos-easing="slide" data-aos-duration="800" data-aos-delay="0">
-
+	<div id="loader-wrapper">
+		<div id="loader"></div>
+	  </div>
+	  
 
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 		<div class="container">
@@ -1122,6 +1154,14 @@ function typeEffect() {
 
 animatedTitle.textContent = '';
 typeEffect();
+
+  window.addEventListener('load', function () {
+    const loader = document.getElementById('loader-wrapper');
+    loader.style.opacity = '0';
+    loader.style.transition = 'opacity 0.5s ease';
+    setTimeout(() => loader.style.display = 'none', 500);
+  });
+
 
 	</script>
 
